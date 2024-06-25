@@ -1,3 +1,3 @@
 function main() {
-  return 'test';
+  return 'test1';
 }
