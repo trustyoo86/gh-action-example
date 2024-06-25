@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-env:
-  BRANCH_NAME: ${{ github.head_ref }}
 jobs:
   release:
     name: "project release"
@@ -22,7 +20,7 @@ jobs:
         run: |
           git config --local user.email "trustyoo86@mgail.com"
           git config --local user.name "Hanseung Yoo"
-          git tag ${{env.BRANCH_NAME}}
+          git tag ${{github.head_ref}}
 
       - name: push
         uses: ad-m/github-push-action@v0.6.0
