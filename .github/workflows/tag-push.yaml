@@ -16,7 +16,6 @@ jobs:
       - name: Repository checkout
         uses: actions/checkout@v4
         with:
-          repository: origin/main
           ref: main
 
       - name: commit push
