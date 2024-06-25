@@ -1,0 +1,32 @@
+name: "PROD tag push"
+on:
+  push:
+    branches:
+      - main
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+jobs:
+  release:
+    name: "project release"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v4
+        with:
+          repository: main
+          ref: main
+
+      - name: commit push
+        run: |
+          git config --local user.email "trustyoo86@mgail.com"
+          git config --local user.name "Hanseung Yoo"
+          git tag ${{env.BRANCH_NAME}}
+
+      - name: push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ github.token }}
+          branch: main
